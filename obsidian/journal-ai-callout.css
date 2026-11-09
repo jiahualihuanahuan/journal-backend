@@ -1,0 +1,6 @@
+/* 放到 <vault>/.obsidian/snippets/ 并在 设置 → 外观 → CSS 代码片段 里打开：
+   让 AI 补充（> [!ai]）显示成紫色带机器人图标，一眼就能和你自己说的话区分开。 */
+.callout[data-callout="ai"] {
+  --callout-color: 139, 92, 246;
+  --callout-icon: lucide-bot;
+}

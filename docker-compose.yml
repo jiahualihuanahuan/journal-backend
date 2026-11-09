@@ -1,0 +1,22 @@
+services:
+  journal-backend:
+    build:
+      context: .
+      args:
+        WITH_WHISPER: ${WITH_WHISPER:-0}
+    container_name: journal-backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      VAULT_PATH: /vault
+      DATA_DIR: /data
+      TZ: ${TZ:-America/Toronto}
+    user: "${PUID:-1000}:${PGID:-1000}"
+    volumes:
+      - ${VAULT_HOST_PATH:?请在 .env 里设置 VAULT_HOST_PATH}:/vault
+      - ./data:/data
+      - ./prompts:/app/prompts   # 改提示词不用重建镜像
+    ports:
+      - "${BIND_ADDR:-127.0.0.1}:${PORT:-8765}:8765"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # 容器访问宿主机上的 vLLM

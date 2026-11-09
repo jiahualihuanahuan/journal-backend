@@ -1,0 +1,4 @@
+# 语音转写（WHISPER_BACKEND=local）
+faster-whisper>=1.0
+# 本地向量检索（EMBED_BACKEND=local，CPU 上跑 bge-m3，第一次会下载约 2GB 模型）
+# sentence-transformers>=3.0
